@@ -4,10 +4,11 @@
   display: flex
   flex-direction: column
   width: 341px
-  height: 603px
-
   overflow: hidden
 
+  font:
+    size: 16px
+  
   border: 1px solid grey
 
   &__img
@@ -20,9 +21,87 @@
     padding: 14px 12px
 
   &__duration
+    margin:
+      bottom: 10px
 
   &__duration-svg
     width: 16px
     height: 16px
-    
-    fill: $duration-time-color
+
+    fill: $svg-clocks-color
+
+  &__duration-text
+    font:
+      size: 0.75em
+    color: $duration-time-color
+    line-height: 22px
+
+  &__offer
+    margin:
+      bottom: 24px
+
+    font:
+      size: 0.875em
+      weight: 600
+
+  &__advantages-list
+    margin:
+      left: 20px
+    list-style-image: url("../data/checkMark.svg")
+
+  &__advantage-wrapper
+    padding:
+      left: 16px
+    margin:
+      bottom: 12px
+
+  &__advantage
+    font:
+      size: 0.875em
+    line-height: 20px
+
+  &__shedule
+
+  &__time-input
+    display: none
+
+  &__time-label
+    display: inline-flex
+    justify-content: center
+    align-items: center
+    width: 63px
+    height: 24px
+  
+    background: 
+      color: $time-label-bg
+
+  &__info
+    display: flex
+    justify-content: space-between
+    padding: 0 7px
+
+  &__cost
+    display: flex
+    flex-direction: column
+    justify-content: center
+
+  &__cost-main
+    font:
+      size: 30px
+
+  &__cost-sub
+    flex-grow: 1
+    font:
+      size: 10px
+
+  &__more-btn
+    display: inline-block
+    width: 165px
+    height: 44px
+
+    background:
+      color: $more-btn-bg
+
+.card__time-input:checked + .card__time-label
+  background:
+    color: $time-label-bg-checked

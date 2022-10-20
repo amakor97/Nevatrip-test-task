@@ -32,29 +32,31 @@
           Off 2019
         </div>
         <ul class="card__advantages-list">
-          <li class="card__advantage">Билет на целый день</li>
-          <li class="card__advantage">Неограниченное число катаний</li>
-          <li class="card__advantage">
-            6 остановок у главных достопримечательностей
+          <li class="card__advantage-wrapper"><div class="card__advantage">Билет на целый день</div></li>
+          <li class="card__advantage-wrapper">
+            <div class="card__advantage">Неограниченное число катаний</div>
           </li>
-          <li class="card__advantage">
-            Ближайший рейс сегодня
+          <li class="card__advantage-wrapper">
+            <div class="card__advantage">6 остановок у главных достопримечательностей</div>
+          </li>
+          <li class="card__advantage-wrapper">
+            <div class="card__advantage">Ближайший рейс сегодня</div>
             <div class="card__shedule">
+              <input class="card__time-input" type="radio" name="time" id="1130" />
               <label for="1130" class="card__time-label"
                 >11:30
-                <input type="radio" name="time" id="1130" />
               </label>
+              <input class="card__time-input" type="radio" name="time" id="1200" />
               <label for="1200" class="card__time-label"
                 >12:00
-                <input type="radio" name="time" id="1200" />
               </label>
+              <input class="card__time-input" type="radio" name="time" id="1230" />
               <label for="1230" class="card__time-label"
                 >12:30
-                <input type="radio" name="time" id="1230" />
               </label>
+              <input class="card__time-input" type="radio" name="time" id="1300" />
               <label for="1300" class="card__time-label"
                 >13:00
-                <input type="radio" name="time" id="1300" />
               </label>
             </div>
           </li>
@@ -64,7 +66,7 @@
             <div class="card__cost-main">990 &#8381;</div>
             <div class="card__cost-sub">1200 р на причале</div>
           </div>
-          <button type="button">Подробнее</button>
+          <button class="card__more-btn" type="button">Подробнее</button>
         </div>
       </div>
     </div>
