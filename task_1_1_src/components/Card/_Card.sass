@@ -1,6 +1,8 @@
 @import "../../Sass/_variables.sass"
   
 .card
+  position: relative
+
   display: flex
   flex-direction: column
   width: 341px
@@ -11,6 +13,25 @@
   
   border: 1px solid grey
 
+  &__label
+    position: absolute
+    top: 40px
+    left: 1px
+
+    display: inline-flex
+    justify-content: center
+    align-items: baseline
+    width: 96px
+    height: 35px
+
+    font:
+      size: 12px
+      weight: 600
+    line-height: 40px
+
+    background:
+      color: $label-bg
+
   &__img
     width: 100%
     height: 220px
@@ -18,15 +39,19 @@
     object-fit: cover
 
   &__content
-    padding: 14px 12px
+    padding: 15px 12px 19px
 
   &__duration
+    display: flex
+    align-items: center
     margin:
-      bottom: 10px
+      bottom: 9px
 
   &__duration-svg
     width: 16px
     height: 16px
+    margin:
+      right: 8px
 
     fill: $svg-clocks-color
 
@@ -38,14 +63,18 @@
 
   &__offer
     margin:
-      bottom: 24px
+      bottom: 18px
 
     font:
       size: 0.875em
       weight: 600
+    color: $offer-color
+    line-height: 22px
+    letter-spacing: 0.2px
 
   &__advantages-list
     margin:
+      bottom: 33px
       left: 20px
     list-style-image: url("../data/checkMark.svg")
 
@@ -53,14 +82,20 @@
     padding:
       left: 16px
     margin:
-      bottom: 12px
+      bottom: 15px
 
   &__advantage
+    margin:
+      bottom: 8px
+
     font:
       size: 0.875em
+    color: $advantage-color
     line-height: 20px
+    letter-spacing: 0.5px
 
   &__shedule
+    padding-right: 7px
 
   &__time-input
     display: none
@@ -71,7 +106,11 @@
     align-items: center
     width: 63px
     height: 24px
+    margin:
+      right: 1.5px
   
+    border:
+      radius: 11px
     background: 
       color: $time-label-bg
 
@@ -98,6 +137,8 @@
     display: inline-block
     width: 165px
     height: 44px
+    margin:
+      top: 3px
 
     background:
       color: $more-btn-bg
