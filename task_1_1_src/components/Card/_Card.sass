@@ -194,11 +194,25 @@
 
   &__shedule
     display: inline-block
-    padding-right: 7px
+    padding:
+      right: 7px
+    overflow-y: hidden
+    max-height: 28px
+
+    transition: max-height 0.5s
+    transition-timing-function: ease
 
     @media (min-width: $screen-xl)
-      flex-shrink: 0
+      display: flex
+      flex:
+        wrap: wrap
+        shrink: 0
+      gap: 2px
+      max-width: 305px
+      max-height: 32px
       vertical-align: bottom
+      padding:
+        right: 0
 
   &__time-input
     display: none
@@ -222,8 +236,35 @@
     @media (min-width: $screen-xl)
       width: 73px
       height: 28px
+
+  &__more-times-btn
+    display: inline-flex
+    justify-content: center
+    align-items: center
+    width: 63px
+    height: 24px
+    margin:
+      right: 1.5px
+      bottom: 4px
+
+    border:
+      radius: 11px
+    background: 
+      color: $time-label-bg
+    cursor: pointer
+
+    @media (min-width: $screen-xl)
+      width: 73px
+      height: 28px
       margin:
         right: 2px
+
+    &:active
+      color: $time-label-checked
+
+      background:
+        color: $time-label-bg-checked
+      box-shadow: 0 2px 2px 0 grey
 
   &__info
     display: flex
