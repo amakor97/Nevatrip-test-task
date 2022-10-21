@@ -179,6 +179,11 @@ html:root {
 .body__card {
   margin: auto;
 }
+@media (min-width: 992px) {
+  .body__card {
+    margin: 0 auto 0 0;
+  }
+}
 
 .card {
   position: relative;
@@ -189,6 +194,13 @@ html:root {
   font-size: 16px;
   border: 1px solid grey;
   border-radius: 16px;
+}
+@media (min-width: 992px) {
+  .card {
+    flex-direction: row;
+    min-width: 1070px;
+    min-height: 370px;
+  }
 }
 .card__label {
   position: absolute;
@@ -221,11 +233,29 @@ html:root {
   -o-object-fit: cover;
      object-fit: cover;
 }
+@media (min-width: 992px) {
+  .card__img {
+    width: 472px;
+    height: 100%;
+  }
+}
 .card__img--alt {
   height: 283px;
 }
+@media (min-width: 992px) {
+  .card__img--alt {
+    width: 472px;
+    height: 100%;
+  }
+}
 .card__content {
   padding: 15px 12px 19px;
+}
+@media (min-width: 992px) {
+  .card__content {
+    display: grid;
+    padding: 18px;
+  }
 }
 .card__duration {
   display: flex;
@@ -243,6 +273,11 @@ html:root {
   color: #9e9e9e;
   line-height: 22px;
 }
+@media (min-width: 992px) {
+  .card__duration-text {
+    font-size: 0.875em;
+  }
+}
 .card__title {
   margin-bottom: 18px;
   font-size: 0.875em;
@@ -250,6 +285,14 @@ html:root {
   color: #404040;
   line-height: 22px;
   letter-spacing: 0.2px;
+}
+@media (min-width: 992px) {
+  .card__title {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    font-size: 1.625em;
+    font-weight: 400;
+  }
 }
 .card__advantages-list {
   margin-bottom: 33px;
@@ -261,14 +304,27 @@ html:root {
   margin-bottom: 15px;
 }
 .card__advantage-text {
+  display: inline-block;
+  vertical-align: text-top;
   margin-bottom: 8px;
   font-size: 0.875em;
   color: #4B4B4B;
   line-height: 20px;
   letter-spacing: 0.5px;
 }
+@media (min-width: 992px) {
+  .card__advantage-text {
+    font-size: 1.125em;
+  }
+}
 .card__shedule {
+  display: inline-block;
   padding-right: 7px;
+}
+@media (min-width: 992px) {
+  .card__shedule {
+    vertical-align: bottom;
+  }
 }
 .card__time-input {
   display: none;
@@ -298,10 +354,20 @@ html:root {
 .card__cost-main {
   font-size: 1.875em;
 }
+@media (min-width: 992px) {
+  .card__cost-main {
+    font-size: 2.25em;
+  }
+}
 .card__cost-sub {
   flex-grow: 1;
   margin-top: 2px;
   font-size: 0.625em;
+}
+@media (min-width: 992px) {
+  .card__cost-sub {
+    font-size: 0.875em;
+  }
 }
 .card__more-btn {
   display: inline-block;
@@ -314,12 +380,28 @@ html:root {
   background-color: #FED74B;
   cursor: pointer;
 }
+@media (min-width: 992px) {
+  .card__more-btn {
+    width: 187px;
+    height: 52px;
+    font-size: 1.125em;
+    border-radius: 23px;
+  }
+}
 .card__more-btn:hover {
   background-color: #ffe277;
 }
 .card__more-btn--alt {
   width: 193px;
   border-radius: 10px;
+}
+@media (min-width: 992px) {
+  .card__more-btn--alt {
+    width: 187px;
+    height: 52px;
+    font-size: 1.125em;
+    border-radius: 23px;
+  }
 }
 
 .card__time-input:checked + .card__time-label {
