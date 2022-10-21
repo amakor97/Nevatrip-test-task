@@ -22,26 +22,32 @@
     display: inline-flex
     justify-content: center
     align-items: baseline
-    width: 96px
+    min-width: 96px
     height: 35px
+    padding: 0 8px
 
     font:
       size: 0.75em
       weight: 600
     line-height: 40px
 
-    background:
-      color: $label-bg
-
     &--alt
       top: 0px
 
-      color: $label-alt
-
       border:
         radius: 0 0 12px 0
-      background: 
-        color: $label-bg-alt
+      
+    &--new
+      background:
+        color: $label-bg-new
+
+    &--new-alt
+      color: $label-alt
+
+      background:
+        color: $label-bg-new-alt
+
+
 
   &__img
     width: 100%

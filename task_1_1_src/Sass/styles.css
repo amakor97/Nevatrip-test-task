@@ -197,17 +197,22 @@ html:root {
   display: inline-flex;
   justify-content: center;
   align-items: baseline;
-  width: 96px;
+  min-width: 96px;
   height: 35px;
+  padding: 0 8px;
   font-size: 0.75em;
   font-weight: 600;
   line-height: 40px;
-  background-color: #FED74B;
 }
 .card__label--alt {
   top: 0px;
-  color: #FFFFFF;
   border-radius: 0 0 12px 0;
+}
+.card__label--new {
+  background-color: #FED74B;
+}
+.card__label--new-alt {
+  color: #FFFFFF;
   background-color: #7553FF;
 }
 .card__img {
