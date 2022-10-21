@@ -200,7 +200,11 @@ html:root {
   .card {
     flex-direction: row;
     min-width: 1070px;
-    min-height: 370px;
+    max-width: 1106px;
+    width: -webkit-min-content;
+    width: -moz-min-content;
+    width: min-content;
+    height: auto;
   }
 }
 .card__label {
@@ -275,13 +279,18 @@ html:root {
 @media (min-width: 1200px) {
   .card__content {
     display: grid;
-    padding: 17px 24px 24px;
+    padding: 17px 22px 24px;
   }
 }
 .card__duration {
   display: flex;
   align-items: center;
   margin-bottom: 9px;
+}
+@media (min-width: 1200px) {
+  .card__duration {
+    margin-bottom: 12px;
+  }
 }
 .card__duration-svg {
   width: 16px;
@@ -311,6 +320,7 @@ html:root {
   .card__title {
     grid-row-start: 1;
     grid-row-end: 2;
+    margin-bottom: 10px;
     font-size: 1.625em;
     font-weight: 400;
     line-height: 34px;
@@ -318,17 +328,38 @@ html:root {
   }
 }
 .card__advantages-list {
-  margin-bottom: 33px;
+  margin-bottom: 29px;
   margin-left: 20px;
   list-style-image: url("../data/checkMark.svg");
 }
-.card__advantage-wrapper {
+@media (min-width: 1200px) {
+  .card__advantages-list {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    margin-left: 22px;
+    margin-bottom: 8px;
+  }
+}
+.card__advantage-item {
   padding-left: 16px;
-  margin-bottom: 15px;
+  margin-bottom: 7px;
+}
+@media (min-width: 1200px) {
+  .card__advantage-item {
+    padding-left: 8px;
+    margin-bottom: 9px;
+  }
+}
+@media (min-width: 1200px) {
+  .card__adv {
+    display: flex;
+  }
 }
 .card__advantage-text {
   display: inline-block;
   vertical-align: text-top;
+  margin-right: 10px;
   margin-bottom: 8px;
   font-size: 0.875em;
   color: #4B4B4B;
@@ -337,6 +368,7 @@ html:root {
 }
 @media (min-width: 1200px) {
   .card__advantage-text {
+    flex-shrink: 0;
     font-size: 1.125em;
   }
 }
@@ -346,6 +378,7 @@ html:root {
 }
 @media (min-width: 1200px) {
   .card__shedule {
+    flex-shrink: 0;
     vertical-align: bottom;
   }
 }
@@ -364,15 +397,34 @@ html:root {
   background-color: #D9E8FF;
   cursor: pointer;
 }
+@media (min-width: 1200px) {
+  .card__time-label {
+    width: 73px;
+    height: 28px;
+    margin-right: 2px;
+  }
+}
 .card__info {
   display: flex;
   justify-content: space-between;
   padding: 0 7px;
 }
+@media (min-width: 1200px) {
+  .card__info {
+    justify-content: flex-start;
+    padding: 0;
+  }
+}
 .card__cost {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+@media (min-width: 1200px) {
+  .card__cost {
+    min-width: 130px;
+    margin-right: 11px;
+  }
 }
 .card__cost-main {
   font-size: 1.875em;

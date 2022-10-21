@@ -17,7 +17,9 @@
   @media (min-width: $screen-xl)
     flex-direction: row
     min-width: 1070px
-    min-height: 370px
+    max-width: 1106px
+    width: min-content
+    height: auto
 
   &__label
     position: absolute
@@ -89,13 +91,17 @@
 
     @media (min-width: $screen-xl)
       display: grid
-      padding: 17px 24px 24px
+      padding: 17px 22px 24px
 
   &__duration
     display: flex
     align-items: center
     margin:
       bottom: 9px
+
+    @media (min-width: $screen-xl)
+      margin:
+        bottom: 12px
 
   &__duration-svg
     width: 16px
@@ -129,6 +135,8 @@
     @media (min-width: $screen-xl)
       grid-row-start: 1
       grid-row-end: 2
+      margin:
+        bottom: 10px
 
       font:
         size: 1.625em
@@ -138,20 +146,38 @@
 
   &__advantages-list
     margin:
-      bottom: 33px
+      bottom: 29px
       left: 20px
     list-style-image: url("../data/checkMark.svg")
 
-  &__advantage-wrapper
+    @media (min-width: $screen-xl)
+      width: max-content
+      margin:
+        left: 22px
+        bottom: 8px
+
+  &__advantage-item
     padding:
       left: 16px
     margin:
-      bottom: 15px
+      bottom: 7px
+
+    @media (min-width : $screen-xl)
+      padding: 
+        left: 8px
+      margin:
+        bottom: 9px
+
+  &__adv
+
+    @media (min-width: $screen-xl)
+      display: flex
 
   &__advantage-text
     display: inline-block
     vertical-align: text-top
     margin:
+      right: 10px
       bottom: 8px
 
     font:
@@ -161,6 +187,8 @@
     letter-spacing: 0.5px
 
     @media (min-width: $screen-xl)
+      flex-shrink: 0
+
       font:
         size: 1.125em
 
@@ -169,6 +197,7 @@
     padding-right: 7px
 
     @media (min-width: $screen-xl)
+      flex-shrink: 0
       vertical-align: bottom
 
   &__time-input
@@ -190,15 +219,30 @@
       color: $time-label-bg
     cursor: pointer
 
+    @media (min-width: $screen-xl)
+      width: 73px
+      height: 28px
+      margin:
+        right: 2px
+
   &__info
     display: flex
     justify-content: space-between
     padding: 0 7px
 
+    @media (min-width: $screen-xl)
+      justify-content: flex-start
+      padding: 0
+
   &__cost
     display: flex
     flex-direction: column
     justify-content: center
+
+    @media (min-width: $screen-xl)
+      min-width: 130px
+      margin:
+        right: 11px
 
   &__cost-main
     font:
