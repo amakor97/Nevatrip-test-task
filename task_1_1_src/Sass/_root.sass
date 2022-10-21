@@ -1,3 +1,5 @@
+@import "../Sass/_variables.sass"
+  
 @font-face
   font-family: "Raleway"
   font-weight: 400
@@ -28,8 +30,6 @@
   font-weight: 600
   font-style: normal
 
-
-
 *
   box-sizing: border-box
 
@@ -38,8 +38,17 @@ html
   &:root
     font:
       family: "Open-sans", Arial, sans-serif
-      size: 100%
+      size: 16px
 
     scroll-behavior: smooth
 
     padding: 12px
+
+
+.body
+  display: grid
+  grid-template-columns: 1fr
+  gap: 40px
+
+  &__card
+    margin: auto
