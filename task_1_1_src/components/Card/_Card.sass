@@ -14,7 +14,7 @@
   border: 1px solid grey
     radius: 16px
 
-  @media (min-width: $screen-lg)
+  @media (min-width: $screen-xl)
     flex-direction: row
     min-width: 1070px
     min-height: 370px
@@ -52,29 +52,44 @@
       background:
         color: $label-bg-new-alt
 
-  &__img
+  &__img-wrapper
+    flex-shrink: 0
     width: 100%
     height: 220px
+    overflow: hidden
 
-    object-fit: cover
-
-    @media (min-width: $screen-lg)
+    @media (min-width: $screen-xl)
       width: 472px
       height: 100%
 
     &--alt
       height: 283px
 
-      @media (min-width: $screen-lg)
-        width: 472px
+    @media (min-width: $screen-xl)
+      height: 100%
+
+  &__img
+    width: 100%
+    height: 100%
+
+    object-fit: cover
+
+    &--alt
+      object-fit: cover
+
+      @media (min-width: $screen-xl)
+        width: 100%
         height: 100%
+        object-position: 21% 59%
+        object-fit: none
+        zoom: 0.291
 
   &__content
     padding: 15px 12px 19px
 
-    @media (min-width: $screen-lg)
+    @media (min-width: $screen-xl)
       display: grid
-      padding: 18px
+      padding: 17px 24px 24px
 
   &__duration
     display: flex
@@ -96,7 +111,7 @@
     color: $duration-time-color
     line-height: 22px
 
-    @media (min-width: $screen-lg)
+    @media (min-width: $screen-xl)
       font:
         size: 0.875em
 
@@ -111,13 +126,15 @@
     line-height: 22px
     letter-spacing: 0.2px
 
-    @media (min-width: $screen-lg)
+    @media (min-width: $screen-xl)
       grid-row-start: 1
       grid-row-end: 2
 
       font:
         size: 1.625em
         weight: 400
+      line-height: 34px
+      letter-spacing: 0.7px
 
   &__advantages-list
     margin:
@@ -143,7 +160,7 @@
     line-height: 20px
     letter-spacing: 0.5px
 
-    @media (min-width: $screen-lg)
+    @media (min-width: $screen-xl)
       font:
         size: 1.125em
 
@@ -151,7 +168,7 @@
     display: inline-block
     padding-right: 7px
 
-    @media (min-width: $screen-lg)
+    @media (min-width: $screen-xl)
       vertical-align: bottom
 
   &__time-input
@@ -187,7 +204,7 @@
     font:
       size: 1.875em
 
-    @media (min-width: $screen-lg)
+    @media (min-width: $screen-xl)
       font:
         size: 2.25em
 
@@ -199,7 +216,7 @@
     font:
       size: 0.625em
 
-    @media (min-width: $screen-lg)
+    @media (min-width: $screen-xl)
       font:
         size: 0.875em
 
@@ -217,7 +234,7 @@
       color: $more-btn-bg
     cursor: pointer
 
-    @media (min-width: $screen-lg)
+    @media (min-width: $screen-xl)
       width: 187px
       height: 52px
 
@@ -237,7 +254,7 @@
       border: 
         radius: 10px
 
-      @media (min-width: $screen-lg)
+      @media (min-width: $screen-xl)
         width: 187px
         height: 52px
 

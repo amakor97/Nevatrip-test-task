@@ -175,11 +175,12 @@ html:root {
   display: grid;
   grid-template-columns: 1fr;
   gap: 40px;
+  margin-bottom: 100px;
 }
 .body__card {
   margin: auto;
 }
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .body__card {
     margin: 0 auto 0 0;
   }
@@ -195,7 +196,7 @@ html:root {
   border: 1px solid grey;
   border-radius: 16px;
 }
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .card {
     flex-direction: row;
     min-width: 1070px;
@@ -227,34 +228,54 @@ html:root {
   color: #FFFFFF;
   background-color: #7553FF;
 }
-.card__img {
+.card__img-wrapper {
+  flex-shrink: 0;
   width: 100%;
   height: 220px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  overflow: hidden;
 }
-@media (min-width: 992px) {
-  .card__img {
+@media (min-width: 1200px) {
+  .card__img-wrapper {
     width: 472px;
     height: 100%;
   }
 }
-.card__img--alt {
+.card__img-wrapper--alt {
   height: 283px;
 }
-@media (min-width: 992px) {
-  .card__img--alt {
-    width: 472px;
+@media (min-width: 1200px) {
+  .card__img-wrapper {
     height: 100%;
+  }
+}
+.card__img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.card__img--alt {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (min-width: 1200px) {
+  .card__img--alt {
+    width: 100%;
+    height: 100%;
+    -o-object-position: 21% 59%;
+       object-position: 21% 59%;
+    -o-object-fit: none;
+       object-fit: none;
+    zoom: 0.291;
   }
 }
 .card__content {
   padding: 15px 12px 19px;
 }
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .card__content {
     display: grid;
-    padding: 18px;
+    padding: 17px 24px 24px;
   }
 }
 .card__duration {
@@ -273,7 +294,7 @@ html:root {
   color: #9e9e9e;
   line-height: 22px;
 }
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .card__duration-text {
     font-size: 0.875em;
   }
@@ -286,12 +307,14 @@ html:root {
   line-height: 22px;
   letter-spacing: 0.2px;
 }
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .card__title {
     grid-row-start: 1;
     grid-row-end: 2;
     font-size: 1.625em;
     font-weight: 400;
+    line-height: 34px;
+    letter-spacing: 0.7px;
   }
 }
 .card__advantages-list {
@@ -312,7 +335,7 @@ html:root {
   line-height: 20px;
   letter-spacing: 0.5px;
 }
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .card__advantage-text {
     font-size: 1.125em;
   }
@@ -321,7 +344,7 @@ html:root {
   display: inline-block;
   padding-right: 7px;
 }
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .card__shedule {
     vertical-align: bottom;
   }
@@ -354,7 +377,7 @@ html:root {
 .card__cost-main {
   font-size: 1.875em;
 }
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .card__cost-main {
     font-size: 2.25em;
   }
@@ -364,7 +387,7 @@ html:root {
   margin-top: 2px;
   font-size: 0.625em;
 }
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .card__cost-sub {
     font-size: 0.875em;
   }
@@ -380,7 +403,7 @@ html:root {
   background-color: #FED74B;
   cursor: pointer;
 }
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .card__more-btn {
     width: 187px;
     height: 52px;
@@ -395,7 +418,7 @@ html:root {
   width: 193px;
   border-radius: 10px;
 }
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .card__more-btn--alt {
     width: 187px;
     height: 52px;
