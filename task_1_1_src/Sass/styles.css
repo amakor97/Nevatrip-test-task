@@ -131,32 +131,14 @@ table {
 }
 
 @font-face {
-  font-family: "Raleway";
-  font-weight: 400;
-  src: url(../fonts/Raleway-Regular.ttf), local("Arial");
-  font-display: swap;
-}
-@font-face {
-  font-family: "Raleway";
-  font-weight: 500;
-  src: url(../fonts/Raleway-Medium.ttf), local("Arial");
-  font-display: swap;
-}
-@font-face {
-  font-family: "Raleway";
-  font-weight: 700;
-  src: url(../fonts/Raleway-Bold.ttf), local("Arial");
-  font-display: swap;
-}
-@font-face {
-  font-family: "Open Sans";
-  src: url("OpenSans-Regular.woff2") format("woff2") url("OpenSans-Regular.woff") format("woff");
+  font-family: "Open-Sans";
+  src: url("../fonts/OpenSans-Regular.woff2") format("woff2"), url("../fonts/OpenSans-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
-  font-family: "Open Sans";
-  src: url("OpenSans-SemiBold.woff2") format("woff2") url("OpenSans-SemiBold.woff") format("woff");
+  font-family: "Open-Sans";
+  src: url("../fonts/OpenSans-SemiBold.woff2") format("woff2"), url("../fonts/OpenSans-SemiBold.woff") format("woff");
   font-weight: 600;
   font-style: normal;
 }
@@ -165,7 +147,7 @@ table {
 }
 
 html:root {
-  font-family: "Open-sans", Arial, sans-serif;
+  font-family: "Open-Sans", Arial, sans-serif;
   font-size: 16px;
   scroll-behavior: smooth;
   padding: 12px;
@@ -193,6 +175,7 @@ html:root {
   width: 341px;
   overflow: hidden;
   font-size: 16px;
+  font-family: "Open-Sans";
   border: 1px solid grey;
   border-radius: 16px;
 }
@@ -214,23 +197,40 @@ html:root {
   display: inline-flex;
   justify-content: center;
   align-items: baseline;
-  min-width: 96px;
-  height: 35px;
+  min-width: 98px;
+  height: 36px;
   padding: 0 8px;
   font-size: 0.75em;
   font-weight: 600;
-  line-height: 40px;
+  color: #3E3E3E;
+  line-height: 35px;
 }
-.card__label--alt {
+@media (min-width: 1200px) {
+  .card__label {
+    top: 45px;
+    padding: 0 34px;
+    height: 44px;
+    font-size: 1em;
+    line-height: 42px;
+  }
+}
+.card__label--top {
   top: 0px;
   border-radius: 0 0 12px 0;
+}
+.card__label--top-2 {
+  top: 59px;
 }
 .card__label--new {
   background-color: #FED74B;
 }
-.card__label--new-alt {
+.card__label--new-2 {
   color: #FFFFFF;
   background-color: #7553FF;
+}
+.card__label--new-3 {
+  color: #FFFFFF;
+  background-color: #099CE8;
 }
 .card__img-wrapper {
   flex-shrink: 0;
@@ -279,7 +279,7 @@ html:root {
 @media (min-width: 1200px) {
   .card__content {
     display: grid;
-    padding: 17px 22px 24px;
+    padding: 17px 36px 24px 22px;
   }
 }
 .card__duration {
@@ -314,7 +314,6 @@ html:root {
   font-weight: 600;
   color: #404040;
   line-height: 22px;
-  letter-spacing: 0.2px;
 }
 @media (min-width: 1200px) {
   .card__title {
@@ -324,12 +323,11 @@ html:root {
     font-size: 1.625em;
     font-weight: 400;
     line-height: 34px;
-    letter-spacing: 0.7px;
   }
 }
 .card__advantages-list {
-  margin-bottom: 29px;
-  margin-left: 20px;
+  margin-bottom: 27px;
+  margin-left: 22px;
   list-style-image: url("../data/checkMark.svg");
 }
 @media (min-width: 1200px) {
@@ -342,7 +340,7 @@ html:root {
   }
 }
 .card__advantage-item {
-  padding-left: 16px;
+  padding-left: 14px;
   margin-bottom: 7px;
 }
 @media (min-width: 1200px) {
@@ -352,7 +350,7 @@ html:root {
   }
 }
 @media (min-width: 1200px) {
-  .card__adv {
+  .card__advantage-wrapper {
     display: flex;
   }
 }
@@ -364,7 +362,6 @@ html:root {
   font-size: 0.875em;
   color: #4B4B4B;
   line-height: 20px;
-  letter-spacing: 0.5px;
 }
 @media (min-width: 1200px) {
   .card__advantage-text {
@@ -378,15 +375,15 @@ html:root {
   overflow-y: hidden;
   max-height: 28px;
   transition: max-height 0.5s;
-  transition-timing-function: ease;
+  transition-timing-function: linear;
 }
 @media (min-width: 1200px) {
   .card__shedule {
     display: flex;
     flex-wrap: wrap;
     flex-shrink: 0;
-    gap: 2px;
-    max-width: 305px;
+    gap: 4px;
+    max-width: 311px;
     max-height: 32px;
     vertical-align: bottom;
     padding-right: 0;
@@ -403,6 +400,7 @@ html:root {
   height: 24px;
   margin-right: 1.5px;
   margin-bottom: 4px;
+  color: #343434;
   border-radius: 11px;
   background-color: #D9E8FF;
   cursor: pointer;
@@ -421,6 +419,7 @@ html:root {
   height: 24px;
   margin-right: 1.5px;
   margin-bottom: 4px;
+  border: none;
   border-radius: 11px;
   background-color: #D9E8FF;
   cursor: pointer;
@@ -477,12 +476,24 @@ html:root {
     font-size: 0.875em;
   }
 }
+.card__cost-svg {
+  fill: #000000;
+}
+.card__cost-svg--main {
+  width: 16px;
+  height: 22px;
+}
+.card__cost-svg--sub {
+  width: 8px;
+  height: 8px;
+}
 .card__more-btn {
   display: inline-block;
   flex-shrink: 0;
   width: 165px;
   height: 44px;
   margin-top: 3px;
+  color: #404040;
   border: 0.5px solid #CBA500;
   border-radius: 20px;
   background-color: #FED74B;
