@@ -233,22 +233,20 @@
       padding:
         right: 0
 
-  &__time-input
-    display: none
-
-  &__time-label
+  &__time-btn
     display: inline-flex
     justify-content: center
     align-items: center
     width: 63px
     height: 24px
     margin:
+      top: 0
       right: 1.5px
       bottom: 4px
 
     color: $time-label-color
 
-    border:
+    border: none
       radius: 11px
     background: 
       color: $time-label-bg
@@ -257,6 +255,16 @@
     @media (min-width: $screen-xl)
       width: 73px
       height: 28px
+
+      font:
+        size: 1em
+
+    &:hover
+      color: $time-label-checked
+
+      background:
+        color: $time-label-bg-checked
+      box-shadow: 0 2px 2px 0 $time-label-checked-shadow
 
   &__more-times-btn
     display: inline-flex
@@ -269,7 +277,7 @@
       bottom: 4px
 
     font:
-      size: 1em
+      size: 0.875em
 
     border: none
       radius: 11px
@@ -283,12 +291,15 @@
       margin:
         right: 2px
 
-    &:active
+      font:
+        size: 1em
+
+    &:hover
       color: $time-label-checked
 
       background:
         color: $time-label-bg-checked
-      box-shadow: 0 2px 2px 0 grey
+      box-shadow: 0 2px 2px 0 $time-label-checked-shadow
 
   &__info
     display: flex
