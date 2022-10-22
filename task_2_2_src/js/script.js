@@ -41,11 +41,12 @@ routeSelect.addEventListener("change", function() {
       timeSelect2.style.visibility = "hidden";
       break;
     }
-    
+
     case "Roundtrip": {
       timeSelect2.style.visibility = "visible";
 
       displayAllChildren(timeSelect1);
+      displayAllChildren(timeSelect2);
       let time1Options = [...timeSelect1.children];
       time1Options.forEach(function(opt) {
         if (opt.value.indexOf("BtoA") !== -1) {
@@ -58,6 +59,47 @@ routeSelect.addEventListener("change", function() {
     }
   }
 
+})
+
+timeSelect1.addEventListener("change", function() {
+  console.log("raw:", timeSelect1.value);
+  console.log("raw to A", timeSelect2.value);
+  const hours1 = parseInt(timeSelect1.value.slice(0, 2));
+  const mins1 = parseInt(timeSelect1.value.slice(2, 4));
+  console.log({hours1, mins1});
+
+  const totalMins1 = hours1*60 + mins1;
+  const minsAfterTrip1 = totalMins1 + 50;
+  console.log({totalMins1, minsAfterTrip1});
+
+  
+  if (timeSelect2.style.visibility !== "hidden") {
+    const hours2 = parseInt(timeSelect2.value.slice(0, 2));
+    const mins2 = parseInt(timeSelect2.value.slice(2, 4));
+    console.log({hours2, mins2});
+    const totalMins2 = hours2*60 + mins2;
+    console.log({totalMins2})
+    if (totalMins2 < minsAfterTrip1) {
+      timeSelect2.children[0].selected = "true";
+    }
+    
+    
+    displayAllChildren(timeSelect2);
+
+    let time2Options = [...timeSelect2.children];
+    console.log(time2Options);
+      time2Options.forEach(function(opt) {
+        console.log(opt);
+        const hours2 = parseInt(opt.value.slice(0, 2));
+        const mins2 = parseInt(opt.value.slice(2, 4));
+        console.log({hours2, mins2});
+        const totalMins2 = hours2*60 + mins2;
+        console.log({totalMins2})
+        if (totalMins2 < minsAfterTrip1) {
+          opt.style.display = "none";
+        }
+      })
+  }
 })
 
 function displayAllChildren(elem) {
