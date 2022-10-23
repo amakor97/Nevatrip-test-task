@@ -116,7 +116,7 @@ timeSelect1.addEventListener("change", function() {
     console.log(time2Options);
       time2Options.forEach(function(opt) {
         console.log(opt);
-        const hours2 = parseInt(opt.value.slice(0, 2));
+        const hours2 = parseInt(opt.value.slice(0, 2)); //NaN?
         const mins2 = parseInt(opt.value.slice(2, 4));
         console.log({hours2, mins2});
         const totalMins2 = hours2*60 + mins2;
@@ -151,12 +151,7 @@ function displayAllChildren(elem) {
 }
 
 
-calcBtn.addEventListener("click", function() {
-  console.log(routeSelect.value, timeSelect1.value, timeSelect2.value, clientsNum.value);
-  console.log({cost});
-  totalCost = cost * clientsNum.value;
-  console.log({totalCost});
-})
+
 
 //let currentDate = (new Date()).toString();
 let currentDate = new Date();
@@ -171,3 +166,36 @@ console.log(hoursOffset);
 
 let hoursDiff = hoursOffset - mskTimeOffset;
 console.log({hoursDiff});
+
+function correctTime(text) {
+  let hours = +(text.slice(0, 2));
+  let corrected = `${hours + hoursDiff}${text.slice(2)}`;
+  return corrected;
+}
+
+const timeElems = document.querySelectorAll(".js-time-elem");
+timeElems.forEach(function(timeElem) {
+  timeElem.textContent = correctTime(timeElem.textContent);
+  /*
+  let text = timeElem.textContent;
+  let hours = +(timeElem.textContent.slice(0, 2));
+  console.log({hours});
+  let correctedText = `${hours + hoursDiff}${timeElem.textContent.slice(2)}`;
+  console.log({correctedText});
+  timeElem.textContent = correctedText;
+  */
+})
+
+const htmlOutput = document.querySelector(".js-output-elem");
+
+calcBtn.addEventListener("click", function() {
+  console.log(routeSelect.value, correctTime(timeSelect1.value), correctTime(timeSelect2.value), clientsNum.value);
+  console.log({cost});
+  totalCost = cost * clientsNum.value;
+  console.log({totalCost});
+  htmlOutput.innerText = 
+  `Вы выбрали ${clientsNum.value} билет... по маршруту ${routeSelect.value} стоимостью ${totalCost} руб.
+  Это путешествие займёт у Вас x минут.
+  Теплоход отправляется в ${correctTime(timeSelect1.value)}, а прибудет в ${correctTime(timeSelect1.value)}`
+
+})
