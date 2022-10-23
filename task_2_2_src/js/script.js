@@ -115,12 +115,12 @@ timeSelect1.addEventListener("change", function() {
     let time2Options = [...timeSelect2.children];
     console.log(time2Options);
       time2Options.forEach(function(opt) {
-        console.log(opt);
+        //console.log(opt);
         const hours2 = parseInt(opt.value.slice(0, 2)); //NaN?
         const mins2 = parseInt(opt.value.slice(2, 4));
-        console.log({hours2, mins2});
+        //console.log({hours2, mins2});
         const totalMins2 = hours2*60 + mins2;
-        console.log({totalMins2})
+        //console.log({totalMins2})
         if (totalMins2 <= minsAfterTrip1) {
           opt.style.display = "none";
         }
@@ -204,11 +204,49 @@ calcBtn.addEventListener("click", function() {
   ((timeSelect2.value.slice(0, 2)*60 + +timeSelect2.value.slice(2, 4) + 50) - (timeSelect1.value.slice(0, 2)*60 + +timeSelect1.value.slice(2, 4)));
 
   const firstTrip = (routeSelect.value !== "Roundtrip") ? "Т" : "Первый т";
-  const secondTrip = (routeSelect.value !== "Roundtrip") ? "" :
-  `, второй теплоход отправляется в ${correctTime(timeSelect2.value)}, а прибудет в ${correctTime(timeSelect2.value)}`
   
+  const firstStartTime = `${correctTime((timeSelect1.value).slice(0, 2))}-${(timeSelect1.value).slice(2, 4)}`;
+  
+  let additionalHour = 0;
+  let firstFinishMins = +(firstStartTime.slice(3, 5)) + 50;
+  if (firstFinishMins >= 60) {
+    firstFinishMins -= 60;
+    additionalHour = 1;
+  }
+  let firstFinishHours = +(firstStartTime.slice(0, 2)) + additionalHour;
+  if (firstFinishHours >= 24) {
+    firstFinishHours -= 24;
+  }
+  const firstFinishTime = `${firstFinishHours.toString().padStart(2, 0)}-${firstFinishMins.toString().padStart(2, 0)}`;
+
+  let secondTrip = "";
+
+  if (routeSelect.value === "Roundtrip") {
+    const secondStartTime = `${correctTime((timeSelect2.value).slice(0, 2))}-${(timeSelect2.value).slice(2, 4)}`;
+
+    let sAdditionalHour = 0;
+    let secondFinishMins = +(secondStartTime.slice(3, 5)) + 50;
+    if (secondFinishMins >= 60) {
+      secondFinishMins -= 60;
+      sAdditionalHour = 1;
+    }
+    let secondFinishHours = +(secondStartTime.slice(0, 2)) + sAdditionalHour;
+
+    if (secondFinishHours >= 24) {
+      secondFinishHours -= 24;
+    }
+
+    const secondFinishTime = `${secondFinishHours.toString().padStart(2, 0)}-${secondFinishMins.toString().padStart(2, 0)}`;
+
+    secondTrip = (routeSelect.value !== "Roundtrip") ? "" :
+    `, второй теплоход отправляется в ${secondStartTime}, а прибудет в ${secondFinishTime}`;
+  }
+
+
+
+
   htmlOutput.innerText = 
   `Вы выбрали ${clientsNum.value} билет${ticketEnding} по маршруту ${route} стоимостью ${totalCost} руб.
   Это путешествие ${freeTime} займёт у Вас ${travelTime} минут.
-  ${firstTrip}еплоход отправляется в ${correctTime(timeSelect1.value)}, а прибудет в ${correctTime(timeSelect1.value)}${secondTrip}.`;
+  ${firstTrip}еплоход отправляется в ${firstStartTime}, а прибудет в ${firstFinishTime}${secondTrip}.`;
 })
