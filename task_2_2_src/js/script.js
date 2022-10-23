@@ -4,9 +4,9 @@ const routeSelect = document.querySelector(".js-route-select");
 const timeSelect1 = document.querySelector(".js-time-select-1");
 const timeSelect2 = document.querySelector(".js-time-select-2");
 
-
 const clientsNum = document.querySelector(".js-num-input");
 const calcBtn = document.querySelector(".js-calc-btn");
+const htmlOutput = document.querySelector(".js-output-elem");
 
 let cost = undefined;
 let totalCost = undefined;
@@ -15,6 +15,7 @@ const mskTimeOffset = 3;
 
 routeSelect.addEventListener("change", function() {
   console.log("route:", routeSelect.value);
+  htmlOutput.innerText = "";
 
   timeSelect1.style.visibility = "visible";
 
@@ -88,7 +89,7 @@ timeSelect1.addEventListener("change", function() {
   console.log("raw:", timeSelect1.value);
   console.log("raw to A", timeSelect2.value);
 
-
+  htmlOutput.innerText = "";
 
   const hours1 = parseInt(timeSelect1.value.slice(0, 2));
   const mins1 = parseInt(timeSelect1.value.slice(2, 4));
@@ -135,6 +136,7 @@ timeSelect1.addEventListener("change", function() {
 })
 
 timeSelect2.addEventListener("change", function() {
+  htmlOutput.innerText = "";
   if ((timeSelect1.value !== "default") && (timeSelect2.value !== "default")) {
     calcBtn.style.visibility = "visible";
   }
@@ -169,7 +171,12 @@ console.log({hoursDiff});
 
 function correctTime(text) {
   let hours = +(text.slice(0, 2));
-  let corrected = `${hours + hoursDiff}${text.slice(2)}`;
+
+  let correctedHours = hours + hoursDiff;
+  if (correctedHours >= 24) {
+    correctedHours -= 24;
+  }
+  let corrected = `${correctedHours}${text.slice(2)}`;
   return corrected;
 }
 
@@ -186,7 +193,7 @@ timeElems.forEach(function(timeElem) {
   */
 })
 
-const htmlOutput = document.querySelector(".js-output-elem");
+
 
 calcBtn.addEventListener("click", function() {
   console.log(routeSelect.value, correctTime(timeSelect1.value), correctTime(timeSelect2.value), clientsNum.value);
@@ -205,7 +212,7 @@ calcBtn.addEventListener("click", function() {
 
   const firstTrip = (routeSelect.value !== "Roundtrip") ? "Т" : "Первый т";
   
-  const firstStartTime = `${correctTime((timeSelect1.value).slice(0, 2))}-${(timeSelect1.value).slice(2, 4)}`;
+  const firstStartTime = `${(correctTime((timeSelect1.value).slice(0, 2))).toString().padStart(2, 0)}-${((timeSelect1.value).slice(2, 4)).toString().padStart(2, 0)}`;
   
   let additionalHour = 0;
   let firstFinishMins = +(firstStartTime.slice(3, 5)) + 50;
@@ -222,7 +229,7 @@ calcBtn.addEventListener("click", function() {
   let secondTrip = "";
 
   if (routeSelect.value === "Roundtrip") {
-    const secondStartTime = `${correctTime((timeSelect2.value).slice(0, 2))}-${(timeSelect2.value).slice(2, 4)}`;
+    const secondStartTime = `${(correctTime((timeSelect2.value).slice(0, 2))).toString().padStart(2, 0)}-${((timeSelect2.value).slice(2, 4)).toString().padStart(2, 0)}`;
 
     let sAdditionalHour = 0;
     let secondFinishMins = +(secondStartTime.slice(3, 5)) + 50;
