@@ -6,6 +6,7 @@ const timeSelect2 = document.querySelector(".js-time-select-2");
 const timeLabel1 = document.querySelector(".js-time-label-1");
 const timeLabel2 = document.querySelector(".js-time-label-2");
 
+const timeElems = document.querySelectorAll(".js-time-elem");
 const clientsNum = document.querySelector(".js-num-input");
 const clientsNumLabel = document.querySelector(".js-num-label");
 const calcBtn = document.querySelector(".js-calc-btn");
@@ -17,6 +18,16 @@ let cost = undefined;
 let totalCost = undefined;
 
 const mskTimeOffset = 3;
+const currentDate = new Date();
+const minsOffset = currentDate.getTimezoneOffset();
+const hoursOffset = -minsOffset / 60;
+const hoursDiff = Math.ceil(hoursOffset - mskTimeOffset);
+
+
+timeElems.forEach(function(timeElem) {
+  timeElem.textContent = correctTime(timeElem.textContent);
+})
+
 
 routeSelect.addEventListener("change", function() {
   htmlOutput.innerText = "";
@@ -111,46 +122,6 @@ timeSelect2.addEventListener("change", function() {
 })
 
 
-function displayAllChildren(elem) {
-  const children = [...elem.children];
-  children.forEach(function(child, index) {
-    if (index !== 0) {
-      child.style.display = "block";
-      child.disabled = false;
-    }
-  })
-}
-
-
-
-let currentDate = new Date();
-let minsOffset = currentDate.getTimezoneOffset();
-let hoursOffset = -minsOffset / 60;
-let hoursDiff = hoursOffset - mskTimeOffset;
-
-function correctTime(text) {
-  if (text === "default") {
-    return text;
-  }
-  let hours = +(text.slice(0, 2));
-
-  hoursDiff = Math.ceil(hoursDiff);
-
-  let correctedHours = hours + hoursDiff;
-  if (correctedHours >= 24) {
-    correctedHours -= 24;
-  }
-  let corrected = `${correctedHours.toString().padStart(2, 0)}${text.slice(2)}`;
-  return corrected;
-}
-
-
-const timeElems = document.querySelectorAll(".js-time-elem");
-timeElems.forEach(function(timeElem) {
-  timeElem.textContent = correctTime(timeElem.textContent);
-})
-
-
 clientsNum.addEventListener("change", function() {
   if ((this.value < 1) || (this.value > 99)) {
     this.value = 1;
@@ -159,20 +130,17 @@ clientsNum.addEventListener("change", function() {
 
 
 calcBtn.addEventListener("click", function() {
-  console.log(routeSelect.value, correctTime(timeSelect1.value), correctTime(timeSelect2.value), clientsNum.value);
   totalCost = cost * clientsNum.value;
   
   const ticketEnding = (clientsNum.value > 4) ? "ов" : 
   (clientsNum.value > 1) ? "а" : "";
   const route = (routeSelect.value === "AtoB") ? "из A в B" :
-  (routeSelect.value === "BtoA") ? "из B в A" :
-  "из A в B и обратно";
+  (routeSelect.value === "BtoA") ? "из B в A" : "из A в B и обратно";
   const freeTime = (routeSelect.value !== "Roundtrip") ? "" : "(с учётом времени между рейсами)";
   const travelTime = (routeSelect.value !== "Roundtrip") ? 50 : 
-  ((timeSelect2.value.slice(0, 2)*60 + +timeSelect2.value.slice(2, 4) + 50) - (timeSelect1.value.slice(0, 2)*60 + +timeSelect1.value.slice(2, 4)));
-
+  ((timeSelect2.value.slice(0, 2)*60 + +timeSelect2.value.slice(2, 4) + 50) - 
+  (timeSelect1.value.slice(0, 2)*60 + +timeSelect1.value.slice(2, 4)));
   const firstTrip = (routeSelect.value !== "Roundtrip") ? "Т" : "Первый т";
-  
   const firstStartTime = `${(correctTime((timeSelect1.value).slice(0, 2))).toString().padStart(2, 0)}-${((timeSelect1.value).slice(2, 4)).toString().padStart(2, 0)}`;
   
   let additionalHour = 0;
@@ -185,10 +153,10 @@ calcBtn.addEventListener("click", function() {
   if (firstFinishHours >= 24) {
     firstFinishHours -= 24;
   }
+
   const firstFinishTime = `${firstFinishHours.toString().padStart(2, 0)}-${firstFinishMins.toString().padStart(2, 0)}`;
 
   let secondTrip = "";
-
   if (routeSelect.value === "Roundtrip") {
     const secondStartTime = `${(correctTime((timeSelect2.value).slice(0, 2))).toString().padStart(2, 0)}-${((timeSelect2.value).slice(2, 4)).toString().padStart(2, 0)}`;
 
@@ -199,7 +167,6 @@ calcBtn.addEventListener("click", function() {
       sAdditionalHour = 1;
     }
     let secondFinishHours = +(secondStartTime.slice(0, 2)) + sAdditionalHour;
-
     if (secondFinishHours >= 24) {
       secondFinishHours -= 24;
     }
@@ -209,7 +176,6 @@ calcBtn.addEventListener("click", function() {
     secondTrip = (routeSelect.value !== "Roundtrip") ? "" :
     `, второй теплоход отправляется в ${secondStartTime}, а прибудет в ${secondFinishTime}`;
   }
-
 
   htmlOutput.innerText = 
   `Вы выбрали ${clientsNum.value} билет${ticketEnding} по маршруту ${route} стоимостью ${totalCost} руб.
@@ -226,3 +192,30 @@ function hideOptionsBySearch(optArr, text) {
     }
   })
 }
+
+
+function displayAllChildren(elem) {
+  const children = [...elem.children];
+  children.forEach(function(child, index) {
+    if (index !== 0) {
+      child.style.display = "block";
+      child.disabled = false;
+    }
+  })
+}
+
+
+function correctTime(text) {
+  if (text === "default") {
+    return text;
+  }
+
+  const hours = +(text.slice(0, 2));
+  const correctedHours = hours + hoursDiff;
+  if (correctedHours >= 24) {
+    correctedHours -= 24;
+  }
+  const correctedText = `${correctedHours.toString().padStart(2, 0)}${text.slice(2)}`;
+  return correctedText;
+}
+
