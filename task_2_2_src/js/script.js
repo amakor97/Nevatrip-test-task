@@ -8,6 +8,10 @@ const timeSelect2 = document.querySelector(".js-time-select-2");
 const clientsNum = document.querySelector(".js-num-input");
 const calcBtn = document.querySelector(".js-calc-btn");
 
+let cost = undefined;
+let totalCost = undefined;
+
+const mskTimeOffset = 3;
 
 routeSelect.addEventListener("change", function() {
   console.log("route:", routeSelect.value);
@@ -30,6 +34,8 @@ routeSelect.addEventListener("change", function() {
 
       calcBtn.style.visibility = "hidden";
 
+      cost = 700;
+
       break;
     }
 
@@ -50,6 +56,8 @@ routeSelect.addEventListener("change", function() {
 
       calcBtn.style.visibility = "hidden";
 
+      cost = 700;
+
       break;
     }
 
@@ -67,6 +75,8 @@ routeSelect.addEventListener("change", function() {
 
       timeSelect1.children[0].selected = "true";
       calcBtn.style.visibility = "hidden";
+
+      cost = 1200;
 
       break;
     }
@@ -143,4 +153,21 @@ function displayAllChildren(elem) {
 
 calcBtn.addEventListener("click", function() {
   console.log(routeSelect.value, timeSelect1.value, timeSelect2.value, clientsNum.value);
+  console.log({cost});
+  totalCost = cost * clientsNum.value;
+  console.log({totalCost});
 })
+
+//let currentDate = (new Date()).toString();
+let currentDate = new Date();
+console.log(currentDate);
+
+let minsOffset = currentDate.getTimezoneOffset();
+console.log({minsOffset});
+
+//let hoursOffset = parseInt(currentDate.slice(-6, -4));
+let hoursOffset = -minsOffset / 60;
+console.log(hoursOffset);
+
+let hoursDiff = hoursOffset - mskTimeOffset;
+console.log({hoursDiff});
