@@ -8,13 +8,13 @@
 </head>
 <body>
   <select class="js-route-select" name="route" id="route">
-    <option value="" hidden>Выберите маршрут</option>
+    <option value="default" hidden>Выберите маршрут</option>
     <option value="AtoB">Из А в В</option>
     <option value="BtoA">Из В в А</option>
     <option value="Roundtrip">Из A в B и обратно в А</option>
   </select>
   <select class="js-time-select-1" name="time-1" id="time-1" style="visibility:hidden">
-    <option value="" hidden>Выберите время</option>
+    <option value="default" hidden>Выберите время</option>
     <option value="1800_AtoB">18:00(из A в B)</option>
     <option value="1830_AtoB">18:30(из A в B)</option>
     <option value="1845_AtoB">18:45(из A в B)</option>
@@ -30,7 +30,7 @@
     <option value="2155_BtoA">21:55(из B в A)</option>
   </select>
   <select class="js-time-select-2" name="time-2" id="time-2" style="visibility:hidden">
-    <option value="" hidden>Выберите время</option>
+    <option value="default" hidden>Выберите время</option>
     <option value="1830_BtoA">18:30(из B в A)</option>
     <option value="1845_BtoA">18:45(из B в A)</option>
     <option value="1900_BtoA">19:00(из B в A)</option>
@@ -39,6 +39,12 @@
     <option value="2150_BtoA">21:50(из B в A)</option>
     <option value="2155_BtoA">21:55(из B в A)</option>
   </select>
+  <br>
+  <br>
+  <input class="js-num-input" type="number" name="num" id="num" value="1" min="1" max="99">
+  <br>
+  <br>
+  <button class="js-calc-btn" type="button" style="visibility: hidden">Посчитать</button>
   <script src="./task_2_2_src/js/script.js"></script>
 </body>
 </html>

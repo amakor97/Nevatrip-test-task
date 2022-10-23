@@ -4,6 +4,11 @@ const routeSelect = document.querySelector(".js-route-select");
 const timeSelect1 = document.querySelector(".js-time-select-1");
 const timeSelect2 = document.querySelector(".js-time-select-2");
 
+
+const clientsNum = document.querySelector(".js-num-input");
+const calcBtn = document.querySelector(".js-calc-btn");
+
+
 routeSelect.addEventListener("change", function() {
   console.log("route:", routeSelect.value);
 
@@ -22,6 +27,9 @@ routeSelect.addEventListener("change", function() {
         }
       })
       timeSelect2.style.visibility = "hidden";
+
+      calcBtn.style.visibility = "hidden";
+
       break;
     }
 
@@ -39,6 +47,9 @@ routeSelect.addEventListener("change", function() {
         }
       })
       timeSelect2.style.visibility = "hidden";
+
+      calcBtn.style.visibility = "hidden";
+
       break;
     }
 
@@ -55,6 +66,8 @@ routeSelect.addEventListener("change", function() {
       })
 
       timeSelect1.children[0].selected = "true";
+      calcBtn.style.visibility = "hidden";
+
       break;
     }
   }
@@ -64,6 +77,9 @@ routeSelect.addEventListener("change", function() {
 timeSelect1.addEventListener("change", function() {
   console.log("raw:", timeSelect1.value);
   console.log("raw to A", timeSelect2.value);
+
+
+
   const hours1 = parseInt(timeSelect1.value.slice(0, 2));
   const mins1 = parseInt(timeSelect1.value.slice(2, 4));
   console.log({hours1, mins1});
@@ -79,7 +95,7 @@ timeSelect1.addEventListener("change", function() {
     console.log({hours2, mins2});
     const totalMins2 = hours2*60 + mins2;
     console.log({totalMins2})
-    if (totalMins2 < minsAfterTrip1) {
+    if (totalMins2 <= minsAfterTrip1) {
       timeSelect2.children[0].selected = "true";
     }
     
@@ -95,10 +111,22 @@ timeSelect1.addEventListener("change", function() {
         console.log({hours2, mins2});
         const totalMins2 = hours2*60 + mins2;
         console.log({totalMins2})
-        if (totalMins2 < minsAfterTrip1) {
+        if (totalMins2 <= minsAfterTrip1) {
           opt.style.display = "none";
         }
       })
+  }
+
+  if ((timeSelect1.value !== "default") && (routeSelect.value !== "Roundtrip") || ((timeSelect1.value !== "default") && (timeSelect2.value !== "default"))) {
+    calcBtn.style.visibility = "visible";
+  } else if (timeSelect2.value === "default") {
+    calcBtn.style.visibility = "hidden";
+  }
+})
+
+timeSelect2.addEventListener("change", function() {
+  if ((timeSelect1.value !== "default") && (timeSelect2.value !== "default")) {
+    calcBtn.style.visibility = "visible";
   }
 })
 
@@ -111,3 +139,8 @@ function displayAllChildren(elem) {
 
   })
 }
+
+
+calcBtn.addEventListener("click", function() {
+  console.log(routeSelect.value, timeSelect1.value, timeSelect2.value, clientsNum.value);
+})
