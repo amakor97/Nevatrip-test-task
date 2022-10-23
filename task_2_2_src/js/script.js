@@ -193,9 +193,22 @@ calcBtn.addEventListener("click", function() {
   console.log({cost});
   totalCost = cost * clientsNum.value;
   console.log({totalCost});
-  htmlOutput.innerText = 
-  `Вы выбрали ${clientsNum.value} билет... по маршруту ${routeSelect.value} стоимостью ${totalCost} руб.
-  Это путешествие займёт у Вас x минут.
-  Теплоход отправляется в ${correctTime(timeSelect1.value)}, а прибудет в ${correctTime(timeSelect1.value)}`
+  
+  const ticketEnding = (clientsNum.value > 4) ? "ов" : 
+  (clientsNum.value > 1) ? "а" : "";
+  const route = (routeSelect.value === "AtoB") ? "из A в B" :
+  (routeSelect.value === "BtoA") ? "из B в A" :
+  "из A в B и обратно";
+  const freeTime = (routeSelect.value !== "Roundtrip") ? "" : "(с учётом времени между рейсами)";
+  const travelTime = (routeSelect.value !== "Roundtrip") ? 50 : 
+  ((timeSelect2.value.slice(0, 2)*60 + +timeSelect2.value.slice(2, 4) + 50) - (timeSelect1.value.slice(0, 2)*60 + +timeSelect1.value.slice(2, 4)));
 
+  const firstTrip = (routeSelect.value !== "Roundtrip") ? "Т" : "Первый т";
+  const secondTrip = (routeSelect.value !== "Roundtrip") ? "" :
+  `, второй теплоход отправляется в ${correctTime(timeSelect2.value)}, а прибудет в ${correctTime(timeSelect2.value)}`
+  
+  htmlOutput.innerText = 
+  `Вы выбрали ${clientsNum.value} билет${ticketEnding} по маршруту ${route} стоимостью ${totalCost} руб.
+  Это путешествие ${freeTime} займёт у Вас ${travelTime} минут.
+  ${firstTrip}еплоход отправляется в ${correctTime(timeSelect1.value)}, а прибудет в ${correctTime(timeSelect1.value)}${secondTrip}.`;
 })
