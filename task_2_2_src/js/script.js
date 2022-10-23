@@ -11,6 +11,8 @@ const clientsNumLabel = document.querySelector(".js-num-label");
 const calcBtn = document.querySelector(".js-calc-btn");
 const htmlOutput = document.querySelector(".js-output-elem");
 
+const time1Options = [...timeSelect1.children];
+
 let cost = undefined;
 let totalCost = undefined;
 
@@ -20,76 +22,45 @@ routeSelect.addEventListener("change", function() {
   htmlOutput.innerText = "";
   timeSelect1.style.visibility = "visible";
   timeLabel1.style.visibility = "visible";
+  timeSelect1.children[0].selected = "true";
 
   switch(routeSelect.value) {
     case "AtoB": {
-      timeSelect1.children[0].selected = "true";
       timeSelect2.children[0].selected = "true";
-
       displayAllChildren(timeSelect1);
-      let time1Options = [...timeSelect1.children];
-      time1Options.forEach(function(opt) {
-        if (opt.value.indexOf("BtoA") !== -1) {
-          opt.style.display = "none";
-          opt.disabled = "true";
-        }
-      })
+
+      hideOptionsBySearch(time1Options, "BtoA");
       timeSelect2.style.visibility = "hidden";
       timeLabel2.style.visibility = "hidden";
-
       calcBtn.style.visibility = "hidden";
-
-
       cost = 700;
-
       break;
     }
 
     case "BtoA": {
-      timeSelect1.children[0].selected = "true";
       timeSelect2.children[0].selected = "true";
-
       displayAllChildren(timeSelect1);
-      let time1Options = [...timeSelect1.children];
-      time1Options.forEach(function(opt) {
-        if (opt.value.indexOf("AtoB") !== -1) {
-          opt.style.display = "none";
-          opt.disabled = "true";
-        }
-      })
+
+      hideOptionsBySearch(time1Options, "AtoB");
       timeSelect2.style.visibility = "hidden";
       timeLabel2.style.visibility = "hidden";
-
       calcBtn.style.visibility = "hidden";
-
       cost = 700;
-
       break;
     }
 
     case "Roundtrip": {
       timeSelect2.style.visibility = "visible";
       timeLabel2.style.visibility = "visible";
-
       displayAllChildren(timeSelect1);
       displayAllChildren(timeSelect2);
-      let time1Options = [...timeSelect1.children];
-      time1Options.forEach(function(opt) {
-        if (opt.value.indexOf("BtoA") !== -1) {
-          opt.style.display = "none";
-          opt.disabled = "true";
-        }
-      })
 
-      timeSelect1.children[0].selected = "true";
+      hideOptionsBySearch(time1Options, "BtoA");
       calcBtn.style.visibility = "hidden";
-
       cost = 1200;
-
       break;
     }
   }
-
 })
 
 timeSelect1.addEventListener("change", function() {
@@ -176,10 +147,12 @@ function correctTime(text) {
   return corrected;
 }
 
+
 const timeElems = document.querySelectorAll(".js-time-elem");
 timeElems.forEach(function(timeElem) {
   timeElem.textContent = correctTime(timeElem.textContent);
 })
+
 
 clientsNum.addEventListener("change", function() {
   if ((this.value < 1) || (this.value > 99)) {
@@ -241,10 +214,18 @@ calcBtn.addEventListener("click", function() {
   }
 
 
-
-
   htmlOutput.innerText = 
   `Вы выбрали ${clientsNum.value} билет${ticketEnding} по маршруту ${route} стоимостью ${totalCost} руб.
   Это путешествие ${freeTime} займёт у Вас ${travelTime} минут.
   ${firstTrip}еплоход отправляется в ${firstStartTime}, а прибудет в ${firstFinishTime}${secondTrip}.`;
 })
+
+
+function hideOptionsBySearch(optArr, text) {
+  optArr.forEach(function(opt) {
+    if (opt.value.indexOf(text) !== -1) {
+      opt.style.display = "none";
+      opt.disabled = "true";
+    }
+  })
+}
