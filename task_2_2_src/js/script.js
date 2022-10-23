@@ -29,6 +29,7 @@ routeSelect.addEventListener("change", function() {
       time1Options.forEach(function(opt) {
         if (opt.value.indexOf("BtoA") !== -1) {
           opt.style.display = "none";
+          opt.disabled = "true";
         }
       })
       timeSelect2.style.visibility = "hidden";
@@ -51,6 +52,7 @@ routeSelect.addEventListener("change", function() {
         console.log(opt);
         if (opt.value.indexOf("AtoB") !== -1) {
           opt.style.display = "none";
+          opt.disabled = "true";
         }
       })
       timeSelect2.style.visibility = "hidden";
@@ -71,6 +73,7 @@ routeSelect.addEventListener("change", function() {
       time1Options.forEach(function(opt) {
         if (opt.value.indexOf("BtoA") !== -1) {
           opt.style.display = "none";
+          opt.disabled = "true";
         }
       })
 
@@ -124,6 +127,7 @@ timeSelect1.addEventListener("change", function() {
         //console.log({totalMins2})
         if (totalMins2 <= minsAfterTrip1) {
           opt.style.display = "none";
+          opt.disabled = "true";
         }
       })
   }
@@ -147,6 +151,7 @@ function displayAllChildren(elem) {
   children.forEach(function(child, index) {
     if (index !== 0) {
       child.style.display = "block";
+      child.disabled = false;
     }
 
   })
