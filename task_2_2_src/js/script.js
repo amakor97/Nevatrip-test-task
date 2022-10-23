@@ -3,8 +3,11 @@
 const routeSelect = document.querySelector(".js-route-select");
 const timeSelect1 = document.querySelector(".js-time-select-1");
 const timeSelect2 = document.querySelector(".js-time-select-2");
+const timeLabel1 = document.querySelector(".js-time-label-1");
+const timeLabel2 = document.querySelector(".js-time-label-2");
 
 const clientsNum = document.querySelector(".js-num-input");
+const clientsNumLabel = document.querySelector(".js-num-label");
 const calcBtn = document.querySelector(".js-calc-btn");
 const htmlOutput = document.querySelector(".js-output-elem");
 
@@ -18,6 +21,7 @@ routeSelect.addEventListener("change", function() {
   htmlOutput.innerText = "";
 
   timeSelect1.style.visibility = "visible";
+  timeLabel1.style.visibility = "visible";
 
   switch(routeSelect.value) {
     case "AtoB": {
@@ -33,8 +37,12 @@ routeSelect.addEventListener("change", function() {
         }
       })
       timeSelect2.style.visibility = "hidden";
+      timeLabel2.style.visibility = "hidden";
 
       calcBtn.style.visibility = "hidden";
+      //clientsNum.style.visibility = "hidden";
+      //clientsNumLabel.style.visibility = "hidden";
+
 
       cost = 700;
 
@@ -56,8 +64,11 @@ routeSelect.addEventListener("change", function() {
         }
       })
       timeSelect2.style.visibility = "hidden";
+      timeLabel2.style.visibility = "hidden";
 
       calcBtn.style.visibility = "hidden";
+      //clientsNum.style.visibility = "hidden";
+      //clientsNumLabel.style.visibility = "hidden";
 
       cost = 700;
 
@@ -66,6 +77,7 @@ routeSelect.addEventListener("change", function() {
 
     case "Roundtrip": {
       timeSelect2.style.visibility = "visible";
+      timeLabel2.style.visibility = "visible";
 
       displayAllChildren(timeSelect1);
       displayAllChildren(timeSelect2);
@@ -79,6 +91,8 @@ routeSelect.addEventListener("change", function() {
 
       timeSelect1.children[0].selected = "true";
       calcBtn.style.visibility = "hidden";
+      //clientsNum.style.visibility = "hidden";
+      //clientsNumLabel.style.visibility = "hidden";
 
       cost = 1200;
 
@@ -134,8 +148,12 @@ timeSelect1.addEventListener("change", function() {
 
   if ((timeSelect1.value !== "default") && (routeSelect.value !== "Roundtrip") || ((timeSelect1.value !== "default") && (timeSelect2.value !== "default"))) {
     calcBtn.style.visibility = "visible";
+    clientsNum.style.visibility = "visible";
+    clientsNumLabel.style.visibility = "visible";
   } else if (timeSelect2.value === "default") {
     calcBtn.style.visibility = "hidden";
+    //clientsNum.style.visibility = "hidden";
+    //clientsNumLabel.style.visibility = "hidden";
   }
 })
 
@@ -143,6 +161,8 @@ timeSelect2.addEventListener("change", function() {
   htmlOutput.innerText = "";
   if ((timeSelect1.value !== "default") && (timeSelect2.value !== "default")) {
     calcBtn.style.visibility = "visible";
+    //clientsNum.style.visibility = "visible";
+    //clientsNumLabel.style.visibility = "visible";
   }
 })
 
@@ -198,6 +218,11 @@ timeElems.forEach(function(timeElem) {
   */
 })
 
+clientsNum.addEventListener("change", function() {
+  if ((this.value < 1) || (this.value > 99)) {
+    this.value = 1;
+  }
+})
 
 
 calcBtn.addEventListener("click", function() {

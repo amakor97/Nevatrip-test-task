@@ -5,14 +5,34 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Тестовое задание</title>
+  <style>
+    * {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    label {
+      display: block;
+    }
+    select {
+      display: block;
+    }
+    input {
+      display: block;
+    }
+    button {
+      display: block;
+    }
+  </style>
 </head>
 <body>
+  <label for="route">Выберите маршрут:</label>
   <select class="js-route-select" name="route" id="route">
     <option value="default" hidden>Выберите маршрут</option>
     <option value="AtoB">Из А в В</option>
     <option value="BtoA">Из В в А</option>
     <option value="Roundtrip">Из A в B и обратно в А</option>
   </select>
+  <br>
+  <label class="js-time-label-1" for="time-1" style="visibility: hidden">Выберите время:</label>
   <select class="js-time-select-1" name="time-1" id="time-1" style="visibility:hidden">
     <option value="default" hidden>Выберите время</option>
     <option class ="js-time-elem" value="1800_AtoB">18:00(из A в B)</option>
@@ -29,6 +49,8 @@
     <option class ="js-time-elem" value="2150_BtoA">21:50(из B в A)</option>
     <option class ="js-time-elem" value="2155_BtoA">21:55(из B в A)</option>
   </select>
+  <br>
+  <label class="js-time-label-2" for="time-2" style="visibility:hidden">Выберите время:</label>
   <select class="js-time-select-2" name="time-2" id="time-2" style="visibility:hidden">
     <option value="default" hidden>Выберите время</option>
     <option class ="js-time-elem" value="1830_BtoA">18:30(из B в A)</option>
@@ -40,11 +62,11 @@
     <option class ="js-time-elem" value="2155_BtoA">21:55(из B в A)</option>
   </select>
   <br>
-  <br>
-  <input class="js-num-input" type="number" name="num" id="num" value="1" min="1" max="99">
-  <br>
+  <label class="js-num-label" for="num" style="visibility:hidden">Количество билетов:</label>
+  <input class="js-num-input" type="number" name="num" id="num" value="1" min="1" max="99" style="visibility:hidden">
   <br>
   <button class="js-calc-btn" type="button" style="visibility: hidden">Посчитать</button>
+  <br>
   <div class="js-output-elem"></div>
   <script src="./task_2_2_src/js/script.js"></script>
 </body>
