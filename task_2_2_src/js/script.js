@@ -63,41 +63,35 @@ routeSelect.addEventListener("change", function() {
   }
 })
 
+
 timeSelect1.addEventListener("change", function() {
   htmlOutput.innerText = "";
 
   const hours1 = parseInt(timeSelect1.value.slice(0, 2));
   const mins1 = parseInt(timeSelect1.value.slice(2, 4));
-
-  const totalMins1 = hours1*60 + mins1;
-  const minsAfterTrip1 = totalMins1 + 50;
+  const minsAfterTrip1 = hours1*60 + mins1 + 50;
   
   if (timeSelect2.style.visibility !== "hidden") {
-    if (timeSelect2.value !== "default") {
-      const hours2 = parseInt(timeSelect2.value.slice(0, 2));
-      const mins2 = parseInt(timeSelect2.value.slice(2, 4));
-      const totalMins2 = hours2*60 + mins2;
-      if (totalMins2 <= minsAfterTrip1) {
-        timeSelect2.children[0].selected = "true";
-      } 
-    }
-    
     
     displayAllChildren(timeSelect2);
 
     let time2Options = [...timeSelect2.children];
-      time2Options.forEach(function(opt) {
-        const hours2 = parseInt(opt.value.slice(0, 2));
-        const mins2 = parseInt(opt.value.slice(2, 4));
-        const totalMins2 = hours2*60 + mins2;
-        if (totalMins2 <= minsAfterTrip1) {
-          opt.style.display = "none";
-          opt.disabled = "true";
-        }
-      })
+    time2Options.forEach(function(opt) {
+      const hours2 = parseInt(opt.value.slice(0, 2));
+      const mins2 = parseInt(opt.value.slice(2, 4));
+      const totalMins2 = hours2*60 + mins2;
+      if (totalMins2 <= minsAfterTrip1) {
+        opt.style.display = "none";
+        opt.disabled = true;
+      }
+      if ((timeSelect2.value !== "default") && (totalMins2 <= minsAfterTrip1)) {
+        timeSelect2.children[0].selected = "true";
+      }
+    })
   }
 
-  if ((timeSelect1.value !== "default") && (routeSelect.value !== "Roundtrip") || ((timeSelect1.value !== "default") && (timeSelect2.value !== "default"))) {
+  if ((timeSelect1.value !== "default") && 
+  ((routeSelect.value !== "Roundtrip") || (timeSelect2.value !== "default"))) {
     calcBtn.style.visibility = "visible";
     clientsNum.style.visibility = "visible";
     clientsNumLabel.style.visibility = "visible";
@@ -105,6 +99,7 @@ timeSelect1.addEventListener("change", function() {
     calcBtn.style.visibility = "hidden";
   }
 })
+
 
 timeSelect2.addEventListener("change", function() {
   htmlOutput.innerText = "";
@@ -115,6 +110,7 @@ timeSelect2.addEventListener("change", function() {
   }
 })
 
+
 function displayAllChildren(elem) {
   const children = [...elem.children];
   children.forEach(function(child, index) {
@@ -122,7 +118,6 @@ function displayAllChildren(elem) {
       child.style.display = "block";
       child.disabled = false;
     }
-
   })
 }
 
@@ -139,11 +134,13 @@ function correctTime(text) {
   }
   let hours = +(text.slice(0, 2));
 
+  hoursDiff = Math.ceil(hoursDiff);
+
   let correctedHours = hours + hoursDiff;
   if (correctedHours >= 24) {
     correctedHours -= 24;
   }
-  let corrected = `${correctedHours}${text.slice(2)}`;
+  let corrected = `${correctedHours.toString().padStart(2, 0)}${text.slice(2)}`;
   return corrected;
 }
 
@@ -225,7 +222,7 @@ function hideOptionsBySearch(optArr, text) {
   optArr.forEach(function(opt) {
     if (opt.value.indexOf(text) !== -1) {
       opt.style.display = "none";
-      opt.disabled = "true";
+      opt.disabled = true;
     }
   })
 }
